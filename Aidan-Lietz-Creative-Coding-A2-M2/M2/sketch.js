@@ -11,11 +11,11 @@ page 6 = difficulty
 
 Wanted to add but run out of time:  
   Boss fight
-  Hover over main menu lights it up as gray
   Use 1 video - Introduction, Boss fight, or ending scene
   Power ups - Faster shooting, Shield
   Difficulty - Changing user and enemy cooldown, speed, health, etc. 
   Volume slider
+  Fix ships re-positioning
 */
 
 let canvasWidth = 500;
