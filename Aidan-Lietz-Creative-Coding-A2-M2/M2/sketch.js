@@ -16,6 +16,7 @@ Wanted to add but run out of time:
   Difficulty - Changing user and enemy cooldown, speed, health, etc. 
   Volume slider
   Fix ships re-positioning
+  Testing
 */
 
 let canvasWidth = 500;
