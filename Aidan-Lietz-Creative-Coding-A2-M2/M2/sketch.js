@@ -11,11 +11,12 @@ page 6 = difficulty
 
 Wanted to add but run out of time:  
   Boss fight
-  Hover over main menu lights it up as gray
   Use 1 video - Introduction, Boss fight, or ending scene
   Power ups - Faster shooting, Shield
   Difficulty - Changing user and enemy cooldown, speed, health, etc. 
   Volume slider
+  Fix ships re-positioning
+  Testing
 */
 
 let canvasWidth = 500;
@@ -158,19 +159,143 @@ function drawBackground() {
   }
 }
 
-function drawMainMenu() {
-  stroke(250,220,50);
-  fill(255,0,0);
-  strokeWeight(5);
-  textSize(50);
-  text("Raiden Wars", width/2 , height/3 -100);
+function drawText() {
   fill(0);
   textSize(30);
   stroke(250,220,50);
-  text("Play", width/2 , height/3);
-  text("Settings", width/2, height/3 +75);
-  text("leaderboards", width/2, height/3 +150);
-  text("Quit", width/2, height/3 +225);
+  strokeWeight(5);
+  if(page === 0){
+    fill(255,0,0);
+    textSize(50);
+    text("Raiden Wars", width/2 , height/3 -100);
+    textSize(30)
+    if(page === 0) {
+      if(mouseX >= 200 && mouseX <= 305 && mouseY >=220 && mouseY <=250) {
+        fill(255);
+        text("Play", width/2 , height/3);
+      } else {
+        fill(0)
+        text("Play", width/2 , height/3);
+      } 
+      if(mouseX >= 165 && mouseX <= 335 && mouseY >=295 && mouseY <=325) {
+        fill(255);
+        text("Settings", width/2, height/3 +75);
+      } else {
+        fill(0);
+        text("Settings", width/2, height/3 +75);
+      }
+      if(mouseX >= 110 && mouseX <= 390 && mouseY >=370 && mouseY <=400) {
+        fill(255);
+        text("leaderboards", width/2, height/3 +150);
+      } else {
+        fill(0);
+        text("leaderboards", width/2, height/3 +150);
+      }
+      if(mouseX >= 205 && mouseX <= 295 && mouseY >=445 && mouseY <=475) {
+        fill(255);
+        text("Quit", width/2, height/3 +225);
+      } else {
+        fill(0);
+        text("Quit", width/2, height/3 +225);
+      }
+    }
+
+  } else if(page === 2) {
+    if(mouseX >= 150 && mouseX <= 340 && mouseY >=220 && mouseY <=250) {
+      console.log("Page 2 Main Menu");
+      fill(255);
+      text("Main Menu", width/2 , height/3);
+    } else {
+      fill(0)
+      text("Main Menu", width/2 , height/3);
+    } 
+    if(mouseX >= 115 && mouseX <= 390 && mouseY >=295 && mouseY <=325) {
+      console.log("Page 2 Cusomise ship");
+      fill(255);
+      text("Customize Ship", width/2, height/3 +75);
+    } else {
+      fill(0);
+      text("Customize Ship", width/2, height/3 +75);
+    }
+    if(mouseX >= 155 && mouseX <= 350 && mouseY >=370 && mouseY <=400) {
+      console.log("Page 2 Difficulty");
+      fill(255);
+      text("Difficulty", width/2, height/3 +150);
+    } else {
+      fill(0);
+      text("Difficulty", width/2, height/3 +150);
+    }
+
+  } else if(page === 3) {
+    if(mouseX >= 150 && mouseX <= 340 && mouseY >=220 && mouseY <=250) {
+      console.log("Page 3 Main Menu");
+      fill(255);
+      text("Main Menu", width/2 , height/3);
+    } else {
+      fill(0)
+      text("Main Menu", width/2 , height/3);
+    } 
+    displayLeaderboard();
+  } else if(page === 4) {
+    console.log("Quit: " + page);
+    noLoop();
+    textSize(35);
+    text("Thanks for playing!!", width/2, height/2);
+  } else if(page === 5) {
+    text("Settings", width/2 , height/3);
+    image(shipImg1, width/2 - 100, height/2);
+    image(shipImg2, width/2 + 100, height/2);
+    if(shipSelected === 2) {
+      noFill();
+      stroke(0,255,0);
+      rect(300, 320, 100, 100);
+    } else {
+      noFill();
+      stroke(0,255,0);
+      rect(100, 320, 100, 100);
+    }
+  } else if(page === 6) {
+    if(mouseX >= 150 && mouseX <= 340 && mouseY >=220 && mouseY <=250) {
+      console.log("Page 6 Settings");
+      fill(255);
+      text("Settings", width/2 , height/3);
+    } else {
+      fill(0)
+      text("Settings", width/2 , height/3);
+    } 
+    if(mouseX >= 115 && mouseX <= 390 && mouseY >=295 && mouseY <=325) {
+      console.log("Page 6 Easy");
+      fill(255);
+      text("Easy", width/2 , height/3 + 75);
+    } else {
+      fill(0,150,0);
+      text("Easy", width/2, height/3 +75);
+    }
+    if(mouseX >= 155 && mouseX <= 350 && mouseY >=370 && mouseY <=400) {
+      console.log("Page 6 Medium");
+      fill(255);
+      text("Medium", width/2 , height/3 + 150);
+    } else {
+      fill(125,125,0);
+      text("Medium", width/2 , height/3 + 150);
+    }
+    if(mouseX >= 200 && mouseX <= 300 && mouseY >=450 && mouseY <=470) {
+      console.log("Page 6 Hard");
+      fill(255);
+      text("Hard", width/2 , height/3 + 225);
+    } else {
+      fill(175,175,0);
+      text("Hard", width/2 , height/3 + 225);
+    }
+    if(mouseX >= 150 && mouseX <= 350 && mouseY >=520 && mouseY <=545) {
+      console.log("Page 6 Impossible");
+      fill(255);
+      text("Impossible", width/2 , height/3 + 300);
+    } else {
+      fill(255,0,0);
+      text("Impossible", width/2 , height/3 + 300);
+    }
+  }
 }
 
 function drawGUI() {
@@ -336,16 +461,21 @@ function startNextWave() {
 }
 
 function displayLeaderboard() {
+  fill(0);
     textAlign(LEFT);
     text("1   " + leaderboard.p1.name + "   " + leaderboard.p1.score, width/5, height/2)
     text("2   " + leaderboard.p2.name + "   " + leaderboard.p2.score, width/5, height/2+50)
     text("3   " + leaderboard.p3.name + "   " + leaderboard.p3.score, width/5, height/2+100)
 }
 
+
 function draw() {
   drawBackground();
   angle += 0.02;
   varY += 1;
+
+  // text(mouseX + ", " + mouseY, 100, 50)
+  drawText();
   //Background
 
   // Speeding up background + text for next wave //
@@ -354,22 +484,16 @@ function draw() {
     hyperSpace();
   }
 
-  fill(0);
-  textSize(30);
-  stroke(250,220,50);
-  strokeWeight(5);
+  
   if(page === 0) {
-    drawMainMenu();
-  } else if(page === 1){
-    score = (enemiesHit * 100 - missedShots * 10) * life;
-
     //Adding selected image to user - Default is shipImg1 //
     if(shipSelected === 2) {
       user.addImage(shipImg2);
     } else {
       user.addImage(shipImg1);
     }
-
+  } else if(page === 1){
+    score = (enemiesHit * 100 - missedShots * 10) * life;
     // Initial Game Start //
     if(temp === false) {
       startNextWave();
@@ -550,40 +674,5 @@ function draw() {
     // END GAME LOGIC //
 
     // Other game pages noted at top //
-  } else if(page === 2) {
-    text("Main Menu", width/2 , height/3);
-    text("Customize Ship", width/2, height/3 +75);
-    text("Difficulty", width/2, height/3 +150);
-  } else if(page === 3) {
-    text("Main Menu", width/2 , height/3);
-    displayLeaderboard();
-  } else if(page === 4) {
-    console.log("Quit: " + page);
-    noLoop();
-    textSize(35);
-    text("Thanks for playing!!", width/2, height/2);
-  } else if(page === 5) {
-    text("Settings", width/2 , height/3);
-    image(shipImg1, width/2 - 100, height/2);
-    image(shipImg2, width/2 + 100, height/2);
-    if(shipSelected === 2) {
-      noFill();
-      stroke(0,255,0);
-      rect(300, 320, 100, 100);
-    } else {
-      noFill();
-      stroke(0,255,0);
-      rect(100, 320, 100, 100);
-    }
-  } else if(page === 6) {
-    text("Settings", width/2 , height/3);
-    fill(0,150,0);
-    text("Easy", width/2 , height/3 + 75);
-    fill(125,125,0);
-    text("Medium", width/2 , height/3 + 150);
-    fill(125,0,0);
-    text("Hard", width/2 , height/3 + 225);
-    fill(255,0,0);
-    text("Impossible", width/2 , height/3 + 300);
-  }
+  } 
 }

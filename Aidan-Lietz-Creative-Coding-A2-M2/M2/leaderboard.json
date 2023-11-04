@@ -1,16 +1,13 @@
 {
-    "p1": 
-    {
+    "p1": {
         "name": "Frank",
         "score": "6950"
     },
-    "p2":
-    {
+    "p2": {
         "name": "Jacob",
         "score": "5800"
     },
-    "p3":
-    {
+    "p3": {
         "name": "Lizzy",
         "score": "5250"
     }
